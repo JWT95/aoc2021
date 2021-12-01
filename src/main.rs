@@ -13,7 +13,7 @@ struct Cli {
 fn main() -> Result<()> {
     let cli = Cli::from_args();
     match cli.day {
-        // 1 => day_01::day_01()?,
+        1 => day_01::day_01()?,
         // 2 => day_02::day_02()?,
         // 3 => day_03::day_03()?,
         // 4 => day_04::day_04()?,
@@ -41,5 +41,5 @@ fn main() -> Result<()> {
         _ => unimplemented!(),
     }
 
-    //Ok(())
+    Ok(())
 }
