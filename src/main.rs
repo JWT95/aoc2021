@@ -1,8 +1,8 @@
 mod common;
-//mod days;
+mod days;
 
 use anyhow::Result;
-//use days::*;
+use days::*;
 use structopt::StructOpt;
 
 #[derive(Debug, StructOpt)]
