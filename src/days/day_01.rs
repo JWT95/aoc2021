@@ -1,6 +1,5 @@
 use crate::common::read_input;
 use anyhow::Result;
-use itertools::Itertools as _;
 
 fn part_one(inputs: &[u32]) -> u32 {
     let mut changes = 0;
