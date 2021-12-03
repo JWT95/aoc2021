@@ -15,7 +15,7 @@ fn main() -> Result<()> {
     match cli.day {
         1 => day_01::day_01()?,
         2 => day_02::day_02()?,
-        // 3 => day_03::day_03()?,
+        3 => day_03::day_03()?,
         // 4 => day_04::day_04()?,
         // 5 => day_05::day_05()?,
         // 6 => day_06::day_06()?,
