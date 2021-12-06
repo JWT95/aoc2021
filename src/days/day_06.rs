@@ -17,7 +17,7 @@ fn play_one_day(fish: HashMap<u64, u64>) -> Result<HashMap<u64, u64>> {
 
 fn part_one(fish: HashMap<u64, u64>) -> Result<()> {
     let mut fish = fish;
-    for i in 0..80 {
+    for _i in 0..80 {
         fish = play_one_day(fish)?;
     }
 
@@ -28,7 +28,7 @@ fn part_one(fish: HashMap<u64, u64>) -> Result<()> {
 
 fn part_two(fish: HashMap<u64, u64>) -> Result<()> {
     let mut fish = fish;
-    for i in 0..256 {
+    for _i in 0..256 {
         fish = play_one_day(fish)?;
     }
 
@@ -57,8 +57,8 @@ pub fn day_06() -> Result<()> {
         fish.entry(i).or_insert(0);
     }
 
-    part_one(fish.clone());
-    part_two(fish);
+    part_one(fish.clone())?;
+    part_two(fish)?;
 
     Ok(())
 }
