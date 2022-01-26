@@ -2,7 +2,7 @@ use crate::common::read_input;
 use anyhow::Result;
 use recap::Recap;
 use serde::Deserialize;
-use std::collections::{HashMap, HashSet};
+use std::collections::HashSet;
 
 #[derive(Debug, Deserialize, PartialEq, Recap, Hash, Eq, Clone)]
 #[recap(regex = r#"(?P<x>\d+),(?P<y>\d+)"#)]

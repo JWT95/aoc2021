@@ -2,7 +2,7 @@ use crate::common::read_input;
 use anyhow::Result;
 use recap::Recap;
 use serde::Deserialize;
-use std::collections::{HashMap, HashSet};
+use std::collections::HashMap;
 
 #[derive(Debug, Deserialize, PartialEq, Recap, Hash, Eq, Clone)]
 #[recap(regex = r#"^(?P<pair>..) -> (?P<insert>.)"#)]
@@ -27,11 +27,11 @@ fn apply_step(start_pairs: HashMap<Pair, u64>, rules: &HashMap<Pair, char>) -> H
         // Add the same number to each new thing
         let left_child = Pair {
             left: pair.0.left,
-            right: *rule
+            right: *rule,
         };
         let right_child = Pair {
             left: *rule,
-            right: pair.0.right
+            right: pair.0.right,
         };
 
         *new_pairs.entry(left_child).or_insert(0) += pair.1;
@@ -43,11 +43,13 @@ fn apply_step(start_pairs: HashMap<Pair, u64>, rules: &HashMap<Pair, char>) -> H
 
 fn part_one(start: String, rules: &HashMap<Pair, char>) {
     let mut pairs = HashMap::new();
-    for i in 0..start.len()-1 {
-        *pairs.entry(Pair {
-            left: start.chars().nth(i).unwrap(),
-            right: start.chars().nth(i+1).unwrap()
-        }).or_insert(0) += 1;
+    for i in 0..start.len() - 1 {
+        *pairs
+            .entry(Pair {
+                left: start.chars().nth(i).unwrap(),
+                right: start.chars().nth(i + 1).unwrap(),
+            })
+            .or_insert(0) += 1;
     }
 
     for _i in 0..40 {
@@ -58,9 +60,7 @@ fn part_one(start: String, rules: &HashMap<Pair, char>) {
     let min = prevalence.values().min().unwrap();
     let max = prevalence.values().max().unwrap();
 
-    println!("{:?}", max-min);
-
-
+    println!("{:?}", max - min);
 }
 
 fn calculate_prevalence(start: String, pairs: HashMap<Pair, u64>) -> HashMap<char, u64> {
@@ -74,7 +74,7 @@ fn calculate_prevalence(start: String, pairs: HashMap<Pair, u64>) -> HashMap<cha
     *counts.get_mut(&start.chars().nth(0).unwrap()).unwrap() += 1;
     *counts.get_mut(&start.chars().last().unwrap()).unwrap() += 1;
 
-    counts.into_iter().map(|x| (x.0, x.1/2)).collect()
+    counts.into_iter().map(|x| (x.0, x.1 / 2)).collect()
 }
 
 pub fn day_14() -> Result<()> {
