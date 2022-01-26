@@ -38,8 +38,8 @@ fn expected_path_cost(path: &Path, endpoint: &Point) -> u32 {
 fn build_part_two(grid: &Grid, len: usize) -> Grid {
     let mut new_grid = HashMap::new();
 
-    for x in 0..(len*5) {
-        for y in 0..(len*5) {
+    for x in 0..(len * 5) {
+        for y in 0..(len * 5) {
             // Take distance from original. Add to original and loop at 10
             let x_dist = x / len;
             let y_dist = y / len;
@@ -71,16 +71,20 @@ fn build_part_two(grid: &Grid, len: usize) -> Grid {
 fn find_best_path(path: Path, grid: &Grid, endpoint: &Point) -> Path {
     // Start at the current point
     // Do not go back on yourself
-    let mut unexplored_points = HashMap:: new();
+    let mut unexplored_points = HashMap::new();
     unexplored_points.insert(path.0, path.1);
     let mut visited_points: HashSet<Point> = HashSet::new();
 
     loop {
-        let point_to_explore =  unexplored_points.iter().map(|x| (x.0.clone(), x.1.clone())).min_by(|a, b| {
-            expected_path_cost(a, endpoint)
-                .partial_cmp(&expected_path_cost(&b, endpoint))
-                .unwrap()
-        }).unwrap();
+        let point_to_explore = unexplored_points
+            .iter()
+            .map(|x| (x.0.clone(), x.1.clone()))
+            .min_by(|a, b| {
+                expected_path_cost(a, endpoint)
+                    .partial_cmp(&expected_path_cost(&b, endpoint))
+                    .unwrap()
+            })
+            .unwrap();
         unexplored_points.remove(&point_to_explore.0);
         visited_points.insert(point_to_explore.0.clone());
 
@@ -103,8 +107,7 @@ fn find_best_path(path: Path, grid: &Grid, endpoint: &Point) -> Path {
                         if *value > new_path.1 {
                             unexplored_points.insert(new_path.0, new_path.1);
                         }
-                    }
-                    else {
+                    } else {
                         unexplored_points.insert(new_path.0, new_path.1);
                     }
                 }
