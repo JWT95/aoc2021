@@ -1,13 +1,13 @@
 use anyhow::Result;
-const LOWER_X: isize= 79;
-const UPPER_X: isize= 137;
-const LOWER_Y: isize= -176;
-const UPPER_Y: isize= -117;
+const LOWER_X: isize = 79;
+const UPPER_X: isize = 137;
+const LOWER_Y: isize = -176;
+const UPPER_Y: isize = -117;
 
 fn velocity_works(x: isize, y: isize) -> bool {
     let mut vec_x = x;
     let mut vec_y = y;
-    let (mut pos_x, mut pos_y) = (0,0);
+    let (mut pos_x, mut pos_y) = (0, 0);
 
     let mut max_height = 0;
 
@@ -27,11 +27,11 @@ fn velocity_works(x: isize, y: isize) -> bool {
         vec_y -= 1;
 
         if pos_x >= LOWER_X && pos_x <= UPPER_X && pos_y >= LOWER_Y && pos_y <= UPPER_Y {
-            return true
+            return true;
         }
     }
 
-    return hit
+    return hit;
 }
 
 pub fn day_17() -> Result<()> {
@@ -47,5 +47,4 @@ pub fn day_17() -> Result<()> {
     println!("{:?}", count);
 
     Ok(())
-
 }
